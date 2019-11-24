@@ -22,7 +22,7 @@ public class ProfessorController {
     @RequestMapping(value = "/cadastrarProfessor", method = RequestMethod.POST)
     public String form(Professor p){
         professorRepository.save(p);
-        return "redirect:/cadastrarProfessor";
+        return "redirect:/listarProfessores";
     }
 
     @RequestMapping(value = "/listarProfessores")

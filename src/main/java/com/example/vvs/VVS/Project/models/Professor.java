@@ -2,22 +2,31 @@ package com.example.vvs.VVS.Project.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
+@Table(name = "Disciplina")
 public class Professor implements Serializable {
 
-    private static final Long serialVersionUID = 1L;
+    //private static final Long serialVersionUID = 1L;
     @Id
+    @Column(name = "professor_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
     private String nome;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "Professor_Disciplina",
+            joinColumns = { @JoinColumn(name = "professor_id") },
+            inverseJoinColumns = { @JoinColumn(name = "disciplina_id") }
+    )
+    Set<Disciplina> disciplinas = new HashSet<>();
+
 
 }
