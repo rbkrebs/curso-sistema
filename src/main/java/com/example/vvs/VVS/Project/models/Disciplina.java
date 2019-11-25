@@ -20,6 +20,6 @@ public class Disciplina implements Serializable {
     private Long id;
     @NotNull
     private String nome;
-    @ManyToMany(mappedBy = "disciplinas")
-    Set<Professor> professores = new HashSet<>();
+    //@ManyToMany(mappedBy = "disciplinas")
+   // Set<Professor> professores = new HashSet<>();
 }
