@@ -21,12 +21,12 @@ public class Disciplina implements Serializable {
     private Long id;
     @NotNull
     private String nome;
-<<<<<<< HEAD
+
     //@ManyToMany(mappedBy = "disciplinas")
    // Set<Professor> professores = new HashSet<>();
-=======
+
    // @ManyToMany(mappedBy = "disciplinas")
     //private List<Professor> professores;
 
->>>>>>> varias coisas, me perdi
+
 }
