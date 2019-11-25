@@ -5,8 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Data
@@ -20,13 +20,12 @@ public class Professor implements Serializable {
     private Long id;
     @NotNull
     private String nome;
-    @ManyToMany(cascade = { CascadeType.ALL })
+    /*@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "Professor_Disciplina",
             joinColumns = { @JoinColumn(name = "professor_id") },
             inverseJoinColumns = { @JoinColumn(name = "disciplina_id") }
     )
-    Set<Disciplina> disciplinas = new HashSet<>();
-
+    private List<Disciplina> disciplinas;*/
 
 }

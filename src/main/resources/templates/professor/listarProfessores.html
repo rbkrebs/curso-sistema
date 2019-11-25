@@ -12,10 +12,11 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <title>Lista de Professores</title>
+    <title>Lista de Disciplinas</title>
 </head>
 <body>
-<h1>Lista de Professores</h1>
+<div class="container">
+<h1>Lista de Disciplinas</h1>
 <table>
     <thead>
     <tr>
@@ -24,12 +25,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="professor: ${professores}">
-        <td><span th:text="${professor.nome}"></span></td>
+    <tr th:each="disciplina: ${disciplinas}">
+        <td><span th:text="${disciplina.nome}"></span></td>
     </tr>
     </tbody>
 </table>
-<a href="/cadastrarProfessor" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Professor </a>
+<a href="/cadastrarDisciplina" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Disciplina </a>
+</div>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>

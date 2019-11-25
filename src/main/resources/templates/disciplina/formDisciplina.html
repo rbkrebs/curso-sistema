@@ -12,25 +12,26 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <title>Lista de Disciplinas</title>
+    <title>Cadastro Disciplina</title>
 </head>
 <body>
 <div class="container">
-<h1>Lista de Disciplinas</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Nome</th>
-        <th>Carga Horária</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="disciplina: ${disciplinas}">
-        <td><span th:text="${disciplina.nome}"></span></td>
-    </tr>
-    </tbody>
-</table>
-<a href="/cadastrarDisciplina" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Disciplina </a>
+    <h1>Cadastro de Disciplina</h1>
+    <a href="/listarDisciplinas" class="waves-effect waves-light btn"><i class="material-icons left">view_headline</i>Lista de Disciplinas </a>
+    <form class="col s10" method="post">
+        Nome: <input type="text" value="" name="nome"/>
+        <div class="row">
+            <div class="input-field col s4">
+            Carga Horária: <input type="number" value="" name="cargaHoraria"/>
+
+        </div>
+        <div class="input-field col s8">
+            Título: <input type="text" value="" name="titulo"/>
+        </div>
+        </div>
+        <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+    </form>
+
 </div>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

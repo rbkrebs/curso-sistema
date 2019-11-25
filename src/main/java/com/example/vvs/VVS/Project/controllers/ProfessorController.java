@@ -1,6 +1,7 @@
 package com.example.vvs.VVS.Project.controllers;
 
 import com.example.vvs.VVS.Project.models.Professor;
+import com.example.vvs.VVS.Project.repository.DisciplinaRepository;
 import com.example.vvs.VVS.Project.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,11 @@ public class ProfessorController {
 
     @Autowired
     private ProfessorRepository professorRepository;
+
+    @Autowired
+    private DisciplinaRepository disciplinaRepository;
+
+
 
     @RequestMapping(value = "/cadastrarProfessor", method = RequestMethod.GET)
     public String form(){
