@@ -14,9 +14,7 @@ jobs: # a collection of steps
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: curso-sistema-{{ checksum "pom.xml" }}
-      docker:
-        - image: circleci/node:jessie-browsers
-      steps:
+
         - checkout
         - run: mkdir test-reports
         - run:
