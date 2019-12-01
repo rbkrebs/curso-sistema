@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "Disciplina")
+@Table(name = "Professor")
 public class Professor implements Serializable {
 
     //private static final Long serialVersionUID = 1L;
@@ -20,6 +20,8 @@ public class Professor implements Serializable {
     private Long id;
     @NotNull
     private String nome;
+    @NotNull
+    private Integer cargaHoraria;
     /*@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "Professor_Disciplina",

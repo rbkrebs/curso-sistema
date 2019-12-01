@@ -16,17 +16,18 @@
 </head>
 <body>
 <div class="container">
+    <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Home</a>
     <h1>Cadastro de Professor</h1>
     <a href="/listarProfessores" class="waves-effect waves-light btn"><i class="material-icons left">view_headline</i>Lista de Professores </a>
     <form class="col s10" method="post">
-        Nome: <input type="text" value="" name="nome"/>
+
         <div class="row">
+            <div class="input-field col s8">
+            Nome: <input type="text" value="" name="nome"/>
+            </div>
             <div class="input-field col s4">
             Carga Horária: <input type="number" value="" name="cargaHoraria"/>
 
-        </div>
-        <div class="input-field col s8">
-            Título: <input type="text" value="" name="titulo"/>
         </div>
         </div>
         <button class="waves-effect waves-light btn" type="submit">Salvar</button>

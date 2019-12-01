@@ -9,9 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.vvs</groupId>
-	<artifactId>VVS-Project</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>VVS-Project</name>
+	<artifactId>curso-sistema</artifactId>
+	<name>curso-sistema</name>
 	<description>Projeto para a disciplina de VVS do IFRS POA</description>
 
 	<properties>

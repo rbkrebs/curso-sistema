@@ -16,6 +16,7 @@
 </head>
 <body>
 <div class="container">
+    <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Home</a>
 <h1>Lista de Disciplinas</h1>
 <table>
     <thead>
@@ -27,6 +28,7 @@
     <tbody>
     <tr th:each="disciplina: ${disciplinas}">
         <td><span th:text="${disciplina.nome}"></span></td>
+        <td><span th:text="${disciplina.cargaHoraria}"></span></td>
     </tr>
     </tbody>
 </table>

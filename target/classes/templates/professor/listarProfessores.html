@@ -16,7 +16,8 @@
 </head>
 <body>
 <div class="container">
-<h1>Lista de Disciplinas</h1>
+    <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Home</a>
+<h1>Lista de Professor</h1>
 <table>
     <thead>
     <tr>
@@ -25,12 +26,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="disciplina: ${disciplinas}">
-        <td><span th:text="${disciplina.nome}"></span></td>
+    <tr th:each="professor: ${professores}">
+        <td><span th:text="${professor.nome}"></span></td>
+        <td><span th:text="${professor.cargaHoraria}"></span></td>
     </tr>
     </tbody>
 </table>
-<a href="/cadastrarDisciplina" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Disciplina </a>
+<a href="/cadastrarProfessor" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Professor </a>
 </div>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

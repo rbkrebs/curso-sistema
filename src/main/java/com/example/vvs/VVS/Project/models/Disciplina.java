@@ -21,6 +21,8 @@ public class Disciplina implements Serializable {
     private Long id;
     @NotNull
     private String nome;
+    @NotNull
+    private Integer cargaHoraria;
     //Fazer os relacionamentos entre tabelas depois
     //@ManyToMany(mappedBy = "disciplinas")
    // Set<Professor> professores = new HashSet<>();

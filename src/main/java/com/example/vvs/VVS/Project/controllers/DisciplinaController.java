@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DisciplinaController {
 
     @Autowired
-    private DisciplinaRepository DisciplinaRepository;
+    private DisciplinaRepository disciplinaRepository;
 
 
     @RequestMapping(value = "/cadastrarDisciplina", method = RequestMethod.GET)
@@ -25,14 +25,14 @@ public class DisciplinaController {
     @RequestMapping(value = "/cadastrarDisciplina", method = RequestMethod.POST)
     public String form(Disciplina d){
 
-        DisciplinaRepository.save(d);
+        disciplinaRepository.save(d);
         return "redirect:/listarDisciplinas";
     }
 
     @RequestMapping(value = "/listarDisciplinas")
     public ModelAndView listaDisciplinas(){
         ModelAndView modelAndView = new ModelAndView("disciplina/listarDisciplinas");
-        Iterable<Disciplina> disciplinas = DisciplinaRepository.findAll();
+        Iterable<Disciplina> disciplinas = disciplinaRepository.findAll();
         modelAndView.addObject("disciplinas", disciplinas);
         return modelAndView;
     }
