@@ -6,7 +6,7 @@ jobs: # a collection of steps
 
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
-      - image: circleci/node:jessie-browsers
+
     steps: # a collection of executable commands
 
       - checkout # check out source code to working directory
@@ -14,7 +14,7 @@ jobs: # a collection of steps
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: curso-sistema-{{ checksum "pom.xml" }}
-
+      #esta parte abaixo deve rodar o selenium no circleCI conforme documentação oficial
       - checkout
       - run: mkdir test-reports
       - run:
@@ -32,7 +32,7 @@ jobs: # a collection of steps
             - ~/.m2
           key: curso-sistema-{{ checksum "pom.xml" }}
 
-      - run: mvn test package site # run the actual tests
+      - run: mvn test  package site # run the actual tests
 
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
