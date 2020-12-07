@@ -17,9 +17,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+/*
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@DataJpaTest*/
 public class ProfessorTest {
     /*
 
