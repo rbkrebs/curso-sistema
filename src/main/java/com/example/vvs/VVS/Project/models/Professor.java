@@ -18,9 +18,9 @@ import java.util.Objects;
 @NoArgsConstructor
 public class Professor implements Serializable {
 
-    //private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
     @Id
-    //@Column(name = "professor_id")
+    @Column(name = "professor_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
@@ -39,7 +39,9 @@ public class Professor implements Serializable {
         this.cargaHoraria = cargaHoraria;
         this.nome = nome;
     }
-    @Override
+
+
+    /*@Override
     public int hashCode() {
         int hash = 7;
         hash = 79 * hash + Objects.hashCode(this.id);
@@ -67,6 +69,6 @@ public class Professor implements Serializable {
             return false;
         }
         return Objects.equals(this.id, other.id);
-    }
+    }*/
 
 }
