@@ -16,7 +16,16 @@ import java.net.URISyntaxException;
 public class DataConfiguration {
 
     @Bean
-    public BasicDataSource dataSource() throws URISyntaxException {
+    public DataSource dataSource(){
+
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/vvc");
+        driverManagerDataSource.setUsername("romulo");
+        driverManagerDataSource.setPassword("romulo");
+        return driverManagerDataSource;
+
+        /* throws URISyntaxException {
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
@@ -28,6 +37,20 @@ public class DataConfiguration {
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
 
-        return basicDataSource;
+        return basicDataSource;*/
     }
+
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setDatabase(Database.MYSQL);
+        adapter.setShowSql(true);
+        adapter.setGenerateDdl(true);
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+        adapter.setPrepareConnection(true);
+        return adapter;
+
+    }
+
 }

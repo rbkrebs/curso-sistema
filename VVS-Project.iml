@@ -195,5 +195,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty.websocket:websocket-common:9.4.22.v20191022" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty.websocket:websocket-api:9.4.22.v20191022" level="project" />
     <orderEntry type="library" name="Maven: com.codeborne:phantomjsdriver:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.22" level="project" />
   </component>
 </module>

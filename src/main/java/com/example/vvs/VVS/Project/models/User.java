@@ -19,7 +19,7 @@ import java.util.Objects;
 public class User implements Serializable {
 
 
-    //private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
     @Id
     //@Column(name = "professor_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +35,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    /*
     @Override
     public int hashCode() {
         int hash = 7;
@@ -63,5 +64,5 @@ public class User implements Serializable {
             return false;
         }
         return Objects.equals(this.id, other.id);
-    }
+    }*/
 }

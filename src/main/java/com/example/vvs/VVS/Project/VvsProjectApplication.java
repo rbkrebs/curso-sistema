@@ -10,7 +10,7 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-@SpringBootApplication
+@SpringBootApplication()
 public class VvsProjectApplication {
 
 	public static void main(String[] args) {

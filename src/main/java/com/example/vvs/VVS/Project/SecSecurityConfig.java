@@ -22,9 +22,9 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth
                 .inMemoryAuthentication()
-                .withUser("user")
-                .password(encoder.encode("password"))
-                .roles("USER")
+                .withUser("romulo")
+                .password(encoder.encode("romulo"))
+                .roles("romulo")
                 .and()
                 .withUser("admin")
                 .password(encoder.encode("admin"))
@@ -35,8 +35,11 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         // http builder configurations for authorize requests and form login (see below)
 
-        http
+        http    .csrf()
+                .disable()
                 .authorizeRequests()
+                .antMatchers("/*")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
