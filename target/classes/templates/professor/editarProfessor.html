@@ -39,29 +39,29 @@
     </ul>
 </header>
 <main>
-<div class="container">
+    <div class="container" th:each="professor : ${professor}">
 
-<h1>Lista de Professor</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Nome</th>
-        <th>Carga Horária</th>
-        <th>Editar</th>
-        <th>Deletar</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="professor: ${professores}">
-        <td><span th:text="${professor.nome}"></span></td>
-        <td><span th:text="${professor.cargaHoraria}"></span></td>
-        <th><a th:href="@{/professor_edit{id}(id = ${professor.id}) }"><i class="fa fa-edit"></i></a></th>
-        <th><a th:href="@{/professor_delete{id}(id = ${professor.id}) }"><i class="fa fa-trash"></i></a></th>
-    </tr>
-    </tbody>
-</table>
-<a href="/cadastrarProfessor" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Professor </a>
-</div>
+        <h1>Editar Cadastro de Professor</h1>
+        <form class="col s10" method="post" th:action="@{/cadastrarProfessor{id}(id = ${professor.id})}">
+
+            <div class="row">
+                <div class="input-field col s7">
+                    Nome: <input type="text" th:value="${professor.nome}" name="nome"/>
+                </div>
+                <div class="input-field col s3">
+                    Carga Horária: <input type="number" th:value="${professor.cargaHoraria}" name="cargaHoraria"/>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    Data de Admissão: <input type="date" th:value="${professor.dataAdmissao}" name="dataAdmissao"/>
+                </div>
+                <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+            </div>
+        </form>
+
+    </div>
 </main>
 
 <footer class="page-footer teal darken-3">

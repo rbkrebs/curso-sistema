@@ -3,11 +3,14 @@ package com.example.vvs.VVS.Project.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
@@ -28,6 +31,9 @@ public class Professor implements Serializable {
     private String nome;
     @NotNull
     private Integer cargaHoraria;
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dataAdmissao;
     /*@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "Professor_Disciplina",
