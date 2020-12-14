@@ -21,7 +21,7 @@
 <header>
     <nav>
         <div class="nav-wrapper teal darken-3">
-            <i class="material-icons left">home</i>Home</a>
+            <a href="/"><i class="material-icons left">home</i>Home</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#">Sass</a></li>
@@ -55,8 +55,8 @@
     <tr th:each="disciplina: ${disciplinas}">
         <td><span th:text="${disciplina.nome}"></span></td>
         <td><span th:text="${disciplina.cargaHoraria}"></span></td>
-        <th><a th:href="@{/edit{id}(id = ${disciplina.id}) }"><i class="fa fa-edit"></i></a></th>
-        <th><a th:href="@{/delete{id}(id = ${disciplina.id}) }"><i class="fa fa-trash"></i></a></th>
+        <th><a th:href="@{/disciplina_edit{id}(id = ${disciplina.id}) }"><i class="fa fa-edit"></i></a></th>
+        <th><a th:href="@{/disciplina_delete{id}(id = ${disciplina.id}) }"><i class="fa fa-trash"></i></a></th>
     </tr>
     </tbody>
 </table>

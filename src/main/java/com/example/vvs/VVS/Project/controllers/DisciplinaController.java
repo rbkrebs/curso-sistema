@@ -49,7 +49,7 @@ public class DisciplinaController {
         return modelAndView;
     }
 
-    @RequestMapping("/edit{id}")
+    @RequestMapping("/disciplina_edit{id}")
     public ModelAndView edit(@PathVariable("id") long id){
 
         ModelAndView modelAndView = new ModelAndView("disciplina/editarDisciplina");
@@ -59,7 +59,7 @@ public class DisciplinaController {
         return modelAndView;
     }
 
-    @RequestMapping("/delete{id}")
+    @RequestMapping("/disciplina_delete{id}")
     public String delete(@PathVariable("id") long id){
         Disciplina disciplina = disciplinaRepository.findById(id).get();
         disciplinaRepository.delete(disciplina);
