@@ -24,11 +24,11 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("romulo")
                 .password(encoder.encode("romulo"))
-                .roles("romulo")
+                .roles("professor")
                 .and()
-                .withUser("admin")
-                .password(encoder.encode("admin"))
-                .roles("USER", "ADMIN");
+                .withUser("coordenador")
+                .password(encoder.encode("coordenador"))
+                .roles("coordenador");
     }
 
     @Override
@@ -38,12 +38,23 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
         http    .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/*")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/cadastrarDisciplina*").hasRole("coordenador")
+                .antMatchers("/listarDisciplinas").hasRole("professor")
+                .antMatchers("/login*").permitAll()
+                .antMatchers("/materialize/**").permitAll()
+                .antMatchers("/fontawesome/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/login.html?error=true")
+                //.failureHandler(authenticationFailureHandler())
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .deleteCookies("JSESSIONID");
+                //.logoutSuccessHandler(logoutSuccessHandler());
     }
 
 
