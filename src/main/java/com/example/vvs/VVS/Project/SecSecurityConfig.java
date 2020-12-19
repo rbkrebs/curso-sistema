@@ -41,6 +41,8 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/cadastrarDisciplina*").hasRole("coordenador")
                 .antMatchers("/listarDisciplinas").hasRole("professor")
                 .antMatchers("/login*").permitAll()
+                .antMatchers("/materialize/**").permitAll()
+                .antMatchers("/fontawesome/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
