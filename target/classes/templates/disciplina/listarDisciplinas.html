@@ -1,47 +1,14 @@
 <!DOCTYPE html>
 <html
         xmlns:th="http://thymeleaf.org"
-        xmlns:layout="http://www.ultraq.bet.nz/thymeleaf/layout"
-        lang="pt-br">
+        layout:decorate="~{ layout }"
+       >
 <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="materialize/css/style.css">
-    <link href="fontawesome/css/all.css" rel="stylesheet">
-    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <title>VVS Project</title>
 </head>
 <body>
-<header>
-    <nav>
-        <div class="nav-wrapper teal darken-3">
-            <a href="/"><i class="material-icons left">home</i>Home</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#">Sass</a></li>
-                <li><a href="#">Components</a></li>
-                <li><a href="#">Javascript</a></li>
-                <li><a href="#">Mobile</a></li>
-            </ul>
-            <a href="/logout"><i class="material-icons right">logout</i>Logout</a>
-        </div>
-    </nav>
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="#">Sass</a></li>
-        <li><a href="#">Components</a></li>
-        <li><a href="#">Javascript</a></li>
-        <li><a href="#">Mobile</a></li>
-    </ul>
-</header>
-<main>
-<div class="container">
 
+<section layout:fragment="main">
 <h1>Lista de Disciplinas</h1>
 <table>
     <thead>
@@ -62,29 +29,6 @@
     </tbody>
 </table>
 <a href="/cadastrarDisciplina" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Disciplina </a>
-</div>
-</main>
-<footer class="page-footer teal darken-3">
-    <div class="container">
-        <div class="row">
-            <div class="col l12 s12">
-                <h5 class="white-text">Elaborado e desenvolvido por:</h5>
-                <p class="grey-text text-lighten-4">Rômulo Basso Krebs</p>
-                <a class = "contact-icon" href="https://www.linkedin.com/in/romulo-krebs/" target="_blank"><span><i class="fab fa-linkedin" aria-hidden="true"></i></span></a>
-                <a class = "contact-icon" href="https://github.com/rbkrebs" target="_blank"><span><i class="fab fa-github" aria-hidden="true"></i></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            © MIT License
-            <a class="grey-text text-lighten-4 right" href="#!"> <i class="fab fa-github"></i> Repositório</a>
-        </div>
-    </div>
-
-</footer>
-<!--JavaScript at end of body for optimized loading-->
-<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</section>
 </body>
 </html>

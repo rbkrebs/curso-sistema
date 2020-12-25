@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html
         xmlns:th="http://thymeleaf.org"
-        xmlns:layout="http://www.ultraq.bet.nz/thymeleaf/layout"
-        lang="pt-br">
+        layout:decorate="~{ layout }">
 <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="materialize/css/style.css">
-    <link href="fontawesome/css/all.css" rel="stylesheet">
-    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <title>VVS Project</title>
+
 </head>
 <body>
 
-<div th:insert="~{ header:: header }"></div>
 
-<main>
-    <div class="container" th:each="professor : ${professor}">
-
+<section layout:fragment="main" th:each="professor : ${professor}">
         <h1>Editar Cadastro de Professor</h1>
         <form class="col s10" method="post" th:action="@{/cadastrarProfessor{id}(id = ${professor.id})}">
 
@@ -44,9 +31,6 @@
             </div>
         </form>
 
-    </div>
-</main>
-
-<div th:insert="~{ footer:: footer }"></div>
+</section>
 </body>
 </html>
