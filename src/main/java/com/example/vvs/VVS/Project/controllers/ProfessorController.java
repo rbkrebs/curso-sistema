@@ -9,10 +9,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.Temporal;
@@ -22,6 +19,7 @@ import java.time.LocalDateTime;
 
 
 @Controller
+@RequestMapping("professor")
 public class ProfessorController {
 
     @Autowired
@@ -40,26 +38,26 @@ public class ProfessorController {
 
 
 
-    @RequestMapping(value = "/cadastrarProfessor", method = RequestMethod.GET)
+    @GetMapping(value = "/cadastrarProfessor")
     public String form(){
         return "professor/formProfessor";
     }
 
-    @RequestMapping(value = "/cadastrarProfessor", method = RequestMethod.POST)
+    @PostMapping(value = "/cadastrarProfessor")
     public String form(Professor p){
         professorRepository.save(p);
-        return "redirect:/listarProfessores";
+        return "redirect:listarProfessores";
     }
 
-    @RequestMapping(value = "/cadastrarProfessor{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/cadastrarProfessor{id}")
     public String form(@PathVariable("id") long id, Professor p){
 
         professorRepository.save(p);
-        return "redirect:/listarProfessores";
+        return "redirect:listarProfessores";
 
     }
 
-    @RequestMapping(value = "/listarProfessores")
+    @GetMapping(value = "/listarProfessores")
     public ModelAndView listaProfessores(){
         ModelAndView modelAndView = new ModelAndView("professor/listarProfessores");
         Iterable<Professor> professores = professorRepository.findAll();
@@ -67,7 +65,7 @@ public class ProfessorController {
         return modelAndView;
     }
 
-    @RequestMapping("/professor_edit{id}")
+    @GetMapping("/professor_edit{id}")
     public ModelAndView edit(@PathVariable("id") long id){
 
         ModelAndView modelAndView = new ModelAndView("professor/editarProfessor");
@@ -77,11 +75,11 @@ public class ProfessorController {
         return modelAndView;
     }
 
-    @RequestMapping("/professor_delete{id}")
+    @GetMapping("/professor_delete{id}")
     public String delete(@PathVariable("id") long id){
         Professor professor = professorRepository.findById(id).get();
         professorRepository.delete(professor);
-        return "redirect:/listarProfessores";
+        return "redirect:listarProfessores";
 
     }
 

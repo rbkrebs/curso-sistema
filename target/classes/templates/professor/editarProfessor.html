@@ -12,7 +12,7 @@
 
 <section layout:fragment="main" th:each="professor : ${professor}">
         <h1>Editar Cadastro de Professor</h1>
-        <form class="col s10" method="post" th:action="@{/cadastrarProfessor{id}(id = ${professor.id})}">
+        <form class="col s10" method="post" th:action="@{/professor/cadastrarProfessor{id}(id = ${professor.id})}">
 
             <div class="row">
                 <div class="input-field col s7">
