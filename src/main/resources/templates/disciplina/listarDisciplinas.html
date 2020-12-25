@@ -23,12 +23,12 @@
     <tr th:each="disciplina: ${disciplinas}">
         <td><span th:text="${disciplina.nome}"></span></td>
         <td><span th:text="${disciplina.cargaHoraria}"></span></td>
-        <th><a th:href="@{/disciplina_edit{id}(id = ${disciplina.id}) }"><i class="fa fa-edit"></i></a></th>
-        <th><a th:href="@{/disciplina_delete{id}(id = ${disciplina.id}) }"><i class="fa fa-trash"></i></a></th>
+        <th><a th:href="@{/disciplina/disciplina_edit{id}(id = ${disciplina.id}) }"><i class="fa fa-edit"></i></a></th>
+        <th><a th:href="@{/disciplina/disciplina_delete{id}(id = ${disciplina.id}) }"><i class="fa fa-trash"></i></a></th>
     </tr>
     </tbody>
 </table>
-<a href="/cadastrarDisciplina" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Disciplina </a>
+<a href="/disciplina/cadastrarDisciplina" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Disciplina </a>
 </section>
 </body>
 </html>

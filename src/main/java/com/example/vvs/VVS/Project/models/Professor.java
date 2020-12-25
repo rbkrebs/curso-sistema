@@ -19,13 +19,9 @@ import java.util.Objects;
 @Table(name = "Professor")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Professor implements Serializable {
+public class Professor extends AbstractEntity<Long>{
 
-    private static final Long serialVersionUID = 1L;
-    @Id
-    @Column(name = "professor_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
     @NotNull
     @Size(min = 3)
     private String nome;
