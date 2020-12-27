@@ -34,5 +34,38 @@
 
 </footer>
 
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="/webjars/jquery-mask-plugin/1.14.15/src/jquery.mask.js"></script>
+
+
+<script type="text/javascript">
+    var elems = document.querySelectorAll('.modal');
+    var url = "";
+
+    $('a[id*="btn_delete_"]').click(function(){
+
+        url = '/professor/professor_delete'+$(this).attr('id').split("_")[2];
+
+        M.Modal.init(elems, {});
+
+
+    })
+    $('a[id*="btn_excluir"]').click(function (){
+        document.location.href = url;
+    })
+
+
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, {});
+    });
+</script>
 </body>
 </html>

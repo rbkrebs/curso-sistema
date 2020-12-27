@@ -25,11 +25,13 @@
         <td><span th:text="${professor.nome}"></span></td>
         <td><span th:text="${professor.cargaHoraria}"></span></td>
         <th><a th:href="@{/professor/professor_edit{id}(id = ${professor.id}) }"><i class="fa fa-edit"></i></a></th>
-        <th><a th:href="@{/professor/professor_delete{id}(id = ${professor.id}) }"><i class="fa fa-trash"></i></a></th>
+        <th><a th:id="${'btn_delete_'+professor.id}"class="modal-trigger" href="#modal1" ><i class="fa fa-trash"></i></a></th>
+
     </tr>
     </tbody>
 </table>
 <a href="/professor/cadastrarProfessor" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Professor </a>
+    <div th:replace="fragments/modal :: modal"></div>
 </section>
 
 
