@@ -6,23 +6,27 @@
 <header th:fragment="header">
     <nav>
         <div class="nav-wrapper teal darken-3">
-            <a href="/"><i class="material-icons left">home</i>Home</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Sass</a></li>
-                <li><a href="#">Components</a></li>
-                <li><a href="#">Javascript</a></li>
-                <li><a href="#">Mobile</a></li>
+                <li><a href="/" class="left"><i class="material-icons">home</i></a></li>
+                <li><a href="/professor/listarProfessores">Professores</a></li>
+                <li><a href="/disciplina/listarDisciplinas">Disciplinas</a></li>
+                <li><a href="#">Semestres</a></li>
+                <li><a href="/logout" class="right"><i class="material-icons">logout</i></a></li>
             </ul>
-            <a href="/logout"><i class="material-icons right">logout</i>Logout</a>
+
         </div>
     </nav>
+
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#">Sass</a></li>
-        <li><a href="#">Components</a></li>
-        <li><a href="#">Javascript</a></li>
-        <li><a href="#">Mobile</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/professor/listarProfessores">Professores</a></li>
+        <li><a href="/disciplina/listarDisciplinas">Disciplinas</a></li>
+        <li><a href="#">Semestres</a></li>
+        <li><a href="logout">Logout</a></li>
     </ul>
+
 </header>
 </body>
 </html>

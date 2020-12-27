@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,13 +24,8 @@ public class Disciplina extends AbstractEntity<Long> {
     private String nome;
     @NotNull
     private Integer cargaHoraria;
-    //Fazer os relacionamentos entre tabelas depois
-    //@ManyToMany(mappedBy = "disciplinas")
-   // Set<Professor> professores = new HashSet<>();
 
-   // @ManyToMany(mappedBy = "disciplinas")
-    //private List<Professor> professores;
-
-
+    @ManyToMany(mappedBy = "disciplinas")
+    private Set<Professor> professores;
 
 }

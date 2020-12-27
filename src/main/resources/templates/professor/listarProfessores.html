@@ -11,7 +11,8 @@
 <section layout:fragment="main">
 
 <h1>Lista de Professor</h1>
-<table>
+    <div th:replace="fragments/alert"></div>
+<table class="my-container">
     <thead>
     <tr>
         <th>Nome</th>
@@ -30,7 +31,7 @@
     </tr>
     </tbody>
 </table>
-<a href="/professor/cadastrarProfessor" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Professor </a>
+    <a href="/professor/cadastrarProfessor" class="waves-effect waves-light btn right"><i class="material-icons left">add_circle_outline</i>Cadastrar Professor </a>
     <div th:replace="fragments/modal :: modal"></div>
 </section>
 

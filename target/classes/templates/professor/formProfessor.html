@@ -8,24 +8,23 @@
 <section layout:fragment="main">
 
     <h1>Cadastro de Professor</h1>
-    <a href="/professor/listarProfessores" class="waves-effect waves-light btn"><i class="material-icons left">view_headline</i>Lista de Professores </a>
+    <a href="/professor/listarProfessores" class="waves-effect waves-light btn"><i class="material-icons left">view_headline</i>Lista
+        de Professores </a>
     <form class="col s10" method="post">
 
-        <div class="row">
-            <div class="input-field col s7">
-                Nome: <input type="text" value="" name="nome"/>
-            </div>
-            <div class="input-field col s3">
-                Carga Horária: <input type="number" value="" name="cargaHoraria"/>
+        <div class="input-field">
+            Nome: <input type="text" value="" name="nome"/>
+        </div>
+        <div class="input-field ">
+            Carga Horária: <input type="number" value="" name="cargaHoraria"/>
 
-            </div>
         </div>
-        <div class="row">
-            <div class="input-field col s3">
-                Data de Admissão: <input type="date" value="" name="dataAdmissao"/>
-            </div>
-            <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+
+        <div class="input-field">
+            Data de Admissão: <input type="date" value="" name="dataAdmissao"/>
         </div>
+
+        <button class="waves-effect waves-light btn right" type="submit">Salvar</button>
     </form>
 
 </section>

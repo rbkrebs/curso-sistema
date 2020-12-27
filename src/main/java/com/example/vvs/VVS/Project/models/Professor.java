@@ -11,7 +11,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -30,47 +32,14 @@ public class Professor extends AbstractEntity<Long>{
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataAdmissao;
-    /*@ManyToMany(cascade = { CascadeType.ALL })
+
+    @ManyToMany
     @JoinTable(
             name = "Professor_Disciplina",
             joinColumns = { @JoinColumn(name = "professor_id") },
             inverseJoinColumns = { @JoinColumn(name = "disciplina_id") }
     )
-    private List<Disciplina> disciplinas;*/
-    public Professor(String nome, Integer cargaHoraria){
-        this.cargaHoraria = cargaHoraria;
-        this.nome = nome;
-    }
+    private Set<Disciplina> disciplinas;
 
-
-    /*@Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + this.cargaHoraria;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Professor other = (Professor) obj;
-        if (this.cargaHoraria != other.cargaHoraria) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        return Objects.equals(this.id, other.id);
-    }*/
 
 }
