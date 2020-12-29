@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -24,6 +26,8 @@ public class ProfessorController {
 
     @Autowired
     private ProfessorRepository professorRepository;
+    @Autowired
+    private DisciplinaRepository disciplinaRepository;
 
     @InitBinder
     private void dateBinder(WebDataBinder binder) {
@@ -39,20 +43,21 @@ public class ProfessorController {
 
 
     @GetMapping(value = "/cadastrarProfessor")
-    public String form(){
+    public String form(Professor professor){
         return "professor/formProfessor";
     }
 
     @PostMapping(value = "/cadastrarProfessor")
-    public String form(Professor p){
-        professorRepository.save(p);
+    public String save(Professor professor){
+        System.out.println(professor.getDisciplinas());
+        professorRepository.save(professor);
         return "redirect:listarProfessores";
     }
 
     @PostMapping(value = "/cadastrarProfessor{id}")
-    public String form(@PathVariable("id") long id, Professor p){
+    public String form(@PathVariable("id") long id, Professor professor){
 
-        professorRepository.save(p);
+        professorRepository.save(professor);
         return "redirect:listarProfessores";
 
     }
@@ -81,6 +86,13 @@ public class ProfessorController {
         professorRepository.delete(professor);
         return "redirect:listarProfessores";
 
+    }
+
+    @ModelAttribute("disciplinas")
+    public List<Disciplina> listaDisciplinas(){
+        List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+        disciplinaRepository.findAll().forEach(disciplinas::add);
+        return disciplinas;
     }
 
 
