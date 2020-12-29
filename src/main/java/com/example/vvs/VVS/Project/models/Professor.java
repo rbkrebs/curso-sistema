@@ -39,7 +39,7 @@ public class Professor extends AbstractEntity<Long>{
             joinColumns = { @JoinColumn(name = "professor_id") },
             inverseJoinColumns = { @JoinColumn(name = "disciplina_id") }
     )
-    private Set<Disciplina> disciplinas;
+    private List<Disciplina> disciplinas;
 
 
 }

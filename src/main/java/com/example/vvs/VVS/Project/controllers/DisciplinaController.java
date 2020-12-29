@@ -4,17 +4,20 @@ import com.example.vvs.VVS.Project.models.Disciplina;
 import com.example.vvs.VVS.Project.models.Professor;
 import com.example.vvs.VVS.Project.repository.DisciplinaRepository;
 import com.example.vvs.VVS.Project.repository.ProfessorRepository;
+import com.example.vvs.VVS.Project.services.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("disciplina")
 public class DisciplinaController {
 
     @Autowired
-    private DisciplinaRepository disciplinaRepository;
+    private DisciplinaService disciplinaService;
 
 
     @GetMapping(value = "/cadastrarDisciplina")
@@ -25,7 +28,7 @@ public class DisciplinaController {
     @PostMapping(value = "/cadastrarDisciplina")
     public String form(Disciplina d){
 
-        disciplinaRepository.save(d);
+        disciplinaService.save(d);
         return "redirect:listarDisciplinas";
 
     }
@@ -33,7 +36,7 @@ public class DisciplinaController {
     @PostMapping(value = "/cadastrarDisciplina{id}")
     public String form(@PathVariable("id") long id, Disciplina d){
 
-        disciplinaRepository.save(d);
+        disciplinaService.save(d);
         return "redirect:listarDisciplinas";
 
     }
@@ -42,7 +45,7 @@ public class DisciplinaController {
     @GetMapping(value = "/listarDisciplinas")
     public ModelAndView listaDisciplinas(){
         ModelAndView modelAndView = new ModelAndView("disciplina/listarDisciplinas");
-        Iterable<Disciplina> disciplinas = disciplinaRepository.findAll();
+        List<Disciplina> disciplinas = disciplinaService.findAll();
         modelAndView.addObject("disciplinas", disciplinas);
         return modelAndView;
     }
@@ -51,7 +54,7 @@ public class DisciplinaController {
     public ModelAndView edit(@PathVariable("id") long id){
 
         ModelAndView modelAndView = new ModelAndView("disciplina/editarDisciplina");
-        Disciplina disciplina = disciplinaRepository.findById(id).get();
+        Disciplina disciplina = disciplinaService.findById(id);
         modelAndView.addObject("disciplina", disciplina);
 
         return modelAndView;
@@ -59,8 +62,8 @@ public class DisciplinaController {
 
     @GetMapping("/disciplina_delete{id}")
     public String delete(@PathVariable("id") long id){
-        Disciplina disciplina = disciplinaRepository.findById(id).get();
-        disciplinaRepository.delete(disciplina);
+
+        disciplinaService.delete(id);
         return "redirect:listarDisciplinas";
 
     }

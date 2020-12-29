@@ -4,6 +4,7 @@ import com.example.vvs.VVS.Project.models.Disciplina;
 import com.example.vvs.VVS.Project.models.Professor;
 import com.example.vvs.VVS.Project.repository.DisciplinaRepository;
 import com.example.vvs.VVS.Project.repository.ProfessorRepository;
+import com.example.vvs.VVS.Project.services.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +26,7 @@ import java.util.List;
 public class ProfessorController {
 
     @Autowired
-    private ProfessorRepository professorRepository;
+    private ProfessorService professorService;
     @Autowired
     private DisciplinaRepository disciplinaRepository;
 
@@ -48,16 +49,17 @@ public class ProfessorController {
     }
 
     @PostMapping(value = "/cadastrarProfessor")
-    public String save(Professor professor){
-        System.out.println(professor.getDisciplinas());
-        professorRepository.save(professor);
+    public String save(Professor professor, List<Disciplina> disciplinas){
+
+        professor.setDisciplinas(disciplinas);
+        professorService.save(professor);
         return "redirect:listarProfessores";
     }
 
     @PostMapping(value = "/cadastrarProfessor{id}")
     public String form(@PathVariable("id") long id, Professor professor){
 
-        professorRepository.save(professor);
+        professorService.save(professor);
         return "redirect:listarProfessores";
 
     }
@@ -65,7 +67,7 @@ public class ProfessorController {
     @GetMapping(value = "/listarProfessores")
     public ModelAndView listaProfessores(){
         ModelAndView modelAndView = new ModelAndView("professor/listarProfessores");
-        Iterable<Professor> professores = professorRepository.findAll();
+        List<Professor> professores = professorService.findAll();
         modelAndView.addObject("professores", professores);
         return modelAndView;
     }
@@ -74,7 +76,7 @@ public class ProfessorController {
     public ModelAndView edit(@PathVariable("id") long id){
 
         ModelAndView modelAndView = new ModelAndView("professor/editarProfessor");
-        Professor professor = professorRepository.findById(id).get();
+        Professor professor = professorService.findById(id);
         modelAndView.addObject("professor", professor);
 
         return modelAndView;
@@ -82,8 +84,8 @@ public class ProfessorController {
 
     @GetMapping("/professor_delete{id}")
     public String delete(@PathVariable("id") long id){
-        Professor professor = professorRepository.findById(id).get();
-        professorRepository.delete(professor);
+
+        professorService.delete(id);
         return "redirect:listarProfessores";
 
     }
