@@ -4,10 +4,15 @@ import com.example.vvs.VVS.Project.models.Disciplina;
 import com.example.vvs.VVS.Project.models.Professor;
 import com.example.vvs.VVS.Project.repository.DisciplinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service
+@Transactional
 public class DisciplinaServiceImpl implements DisciplinaService{
 
     @Autowired
