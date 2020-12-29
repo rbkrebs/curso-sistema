@@ -17,13 +17,9 @@ import java.io.Serializable;
 @Table(name = "Semestre")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Semestre implements Serializable {
+public class Semestre extends AbstractEntity<Long> {
 
-    private static final Long serialVersionUID = 1L;
-    @Id
-    @Column(name = "professor_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
     @NotNull
     @Size(min = 3)
     private String text_id;

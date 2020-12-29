@@ -6,42 +6,40 @@ import com.example.vvs.VVS.Project.repository.DisciplinaRepository;
 import com.example.vvs.VVS.Project.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("disciplina")
 public class DisciplinaController {
 
     @Autowired
     private DisciplinaRepository disciplinaRepository;
 
 
-    @RequestMapping(value = "/cadastrarDisciplina", method = RequestMethod.GET)
+    @GetMapping(value = "/cadastrarDisciplina")
     public String form(){
         return "disciplina/formDisciplina";
     }
 
-    @RequestMapping(value = "/cadastrarDisciplina", method = RequestMethod.POST)
+    @PostMapping(value = "/cadastrarDisciplina")
     public String form(Disciplina d){
 
         disciplinaRepository.save(d);
-        return "redirect:/listarDisciplinas";
+        return "redirect:listarDisciplinas";
 
     }
 
-    @RequestMapping(value = "/cadastrarDisciplina{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/cadastrarDisciplina{id}")
     public String form(@PathVariable("id") long id, Disciplina d){
 
         disciplinaRepository.save(d);
-        return "redirect:/listarDisciplinas";
+        return "redirect:listarDisciplinas";
 
     }
 
 
-    @RequestMapping(value = "/listarDisciplinas")
+    @GetMapping(value = "/listarDisciplinas")
     public ModelAndView listaDisciplinas(){
         ModelAndView modelAndView = new ModelAndView("disciplina/listarDisciplinas");
         Iterable<Disciplina> disciplinas = disciplinaRepository.findAll();
@@ -49,7 +47,7 @@ public class DisciplinaController {
         return modelAndView;
     }
 
-    @RequestMapping("/disciplina_edit{id}")
+    @GetMapping("/disciplina_edit{id}")
     public ModelAndView edit(@PathVariable("id") long id){
 
         ModelAndView modelAndView = new ModelAndView("disciplina/editarDisciplina");
@@ -59,11 +57,11 @@ public class DisciplinaController {
         return modelAndView;
     }
 
-    @RequestMapping("/disciplina_delete{id}")
+    @GetMapping("/disciplina_delete{id}")
     public String delete(@PathVariable("id") long id){
         Disciplina disciplina = disciplinaRepository.findById(id).get();
         disciplinaRepository.delete(disciplina);
-        return "redirect:/listarDisciplinas";
+        return "redirect:listarDisciplinas";
 
     }
 }

@@ -9,23 +9,25 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
+@RequestMapping("professor")
 public class ProfessorController {
 
     @Autowired
     private ProfessorRepository professorRepository;
+    @Autowired
+    private DisciplinaRepository disciplinaRepository;
 
     @InitBinder
     private void dateBinder(WebDataBinder binder) {
@@ -40,26 +42,27 @@ public class ProfessorController {
 
 
 
-    @RequestMapping(value = "/cadastrarProfessor", method = RequestMethod.GET)
-    public String form(){
+    @GetMapping(value = "/cadastrarProfessor")
+    public String form(Professor professor){
         return "professor/formProfessor";
     }
 
-    @RequestMapping(value = "/cadastrarProfessor", method = RequestMethod.POST)
-    public String form(Professor p){
-        professorRepository.save(p);
-        return "redirect:/listarProfessores";
+    @PostMapping(value = "/cadastrarProfessor")
+    public String save(Professor professor){
+        System.out.println(professor.getDisciplinas());
+        professorRepository.save(professor);
+        return "redirect:listarProfessores";
     }
 
-    @RequestMapping(value = "/cadastrarProfessor{id}", method = RequestMethod.POST)
-    public String form(@PathVariable("id") long id, Professor p){
+    @PostMapping(value = "/cadastrarProfessor{id}")
+    public String form(@PathVariable("id") long id, Professor professor){
 
-        professorRepository.save(p);
-        return "redirect:/listarProfessores";
+        professorRepository.save(professor);
+        return "redirect:listarProfessores";
 
     }
 
-    @RequestMapping(value = "/listarProfessores")
+    @GetMapping(value = "/listarProfessores")
     public ModelAndView listaProfessores(){
         ModelAndView modelAndView = new ModelAndView("professor/listarProfessores");
         Iterable<Professor> professores = professorRepository.findAll();
@@ -67,7 +70,7 @@ public class ProfessorController {
         return modelAndView;
     }
 
-    @RequestMapping("/professor_edit{id}")
+    @GetMapping("/professor_edit{id}")
     public ModelAndView edit(@PathVariable("id") long id){
 
         ModelAndView modelAndView = new ModelAndView("professor/editarProfessor");
@@ -77,13 +80,21 @@ public class ProfessorController {
         return modelAndView;
     }
 
-    @RequestMapping("/professor_delete{id}")
+    @GetMapping("/professor_delete{id}")
     public String delete(@PathVariable("id") long id){
         Professor professor = professorRepository.findById(id).get();
         professorRepository.delete(professor);
-        return "redirect:/listarProfessores";
+        return "redirect:listarProfessores";
 
     }
+
+    @ModelAttribute("disciplinas")
+    public List<Disciplina> listaDisciplinas(){
+        List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+        disciplinaRepository.findAll().forEach(disciplinas::add);
+        return disciplinas;
+    }
+
 
 
 }

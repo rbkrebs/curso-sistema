@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"></head>
+
+<body>
+<header th:fragment="header">
+    <nav>
+        <div class="nav-wrapper teal darken-3">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/" class="left"><i class="material-icons">home</i></a></li>
+                <li><a href="/professor/listarProfessores">Professores</a></li>
+                <li><a href="/disciplina/listarDisciplinas">Disciplinas</a></li>
+                <li><a href="#">Semestres</a></li>
+                <li><a href="/logout" class="right"><i class="material-icons">logout</i></a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <li><a href="/professor/listarProfessores">Professores</a></li>
+        <li><a href="/disciplina/listarDisciplinas">Disciplinas</a></li>
+        <li><a href="#">Semestres</a></li>
+        <li><a href="logout">Logout</a></li>
+    </ul>
+
+</header>
+</body>
+</html>
