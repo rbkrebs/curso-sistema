@@ -56,7 +56,11 @@
     })
     $('a[id*="btn_excluir"]').click(function (){
         document.location.href = url;
-    })
+    });
+
+
+
+
 
 
 
@@ -66,6 +70,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems, {});
+        var select = document.querySelectorAll('select');
+        var select_instances = M.FormSelect.init(select, {});
     });
 </script>
 </body>

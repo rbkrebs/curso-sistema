@@ -10,7 +10,7 @@
     <h1>Cadastro de Professor</h1>
     <a href="/professor/listarProfessores" class="waves-effect waves-light btn"><i class="material-icons left">view_headline</i>Lista
         de Professores </a>
-    <form class="col s10" method="post" th:action="@{/cadastrarProfessor}" th:object="${professor}">
+    <form class="col s10" method="post" th:action="@{/professor/cadastrarProfessor}" th:object="${professor}">
 
         <div class="input-field">
             Nome: <input type="text" value="" name="nome" th:field="*{nome}"/>
@@ -24,15 +24,17 @@
             Data de Admissão: <input type="date" value="" name="dataAdmissao" th:field="*{dataAdmissao}"/>
         </div>
 
-        <div class="input-field">
-            <p th:each="disciplina: ${disciplinas}" th:field="*{disciplinas}">
-                <label>
-                    <input type="checkbox" th:value="${disciplina.id}"  />
-                    <span th:text="${disciplina.nome}"></span>
+        <div class="input-field" >
+            <div th:each="disciplina : ${disciplinas}" >
+                <label >
+                    <input type="hidden" name="_list[0].val" value="">
+                    <input type="checkbox" th:value="${disciplina.id}"  th:field="*{disciplinas}"/>
+                    <span  th:text="${disciplina.nome}" ></span>
                 </label>
-            </p>
-            <p>
+            </div>
         </div>
+
+
 
         <button class="waves-effect waves-light btn right" type="submit">Salvar</button>
     </form>

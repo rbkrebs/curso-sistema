@@ -1,39 +1,35 @@
-package com.example.vvs.VVS.Project.models;
+package com.example.vvs.VVS.Project.DTO;
 
+import com.example.vvs.VVS.Project.models.Disciplina;
+import com.example.vvs.VVS.Project.models.Professor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-@Entity
 @Data
-@Table(name = "Professor")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Professor extends AbstractEntity<Long>{
+public class ProfessorDTO {
 
-
-    @NotNull
-    @Size(min = 3)
     private String nome;
-    @NotNull
-    private Integer cargaHoraria;
-    @NotNull
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataAdmissao;
 
-    @ManyToMany
+    private int cargaHoraria;
+
     private List<Disciplina> disciplinas;
 
+    public void addDisciplina(Disciplina disciplina){
+        this.disciplinas = new ArrayList();
+        this.disciplinas.add(disciplina);
 
+
+    }
 }

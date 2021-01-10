@@ -9,23 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class StringToDisciplinaConverter implements Converter<List<String>, List<Disciplina>> {
 
-    @Autowired
-    private DisciplinaRepository disciplinaRepository;
+public class StringToDisciplinaConverter  {
 
-    @Override
-    public List<Disciplina> convert(List<String> source) {
 
-        List<Disciplina> disciplinas = new ArrayList();
-
-        if(!(source.size()>0)){
-            return null;
-        }
-        for ( String item: source) {
-
-        }
-        return null;
-    }
 }

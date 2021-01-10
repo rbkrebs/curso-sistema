@@ -12,13 +12,13 @@
 <section layout:fragment="main">
     <h1>Cadastro de Disciplina</h1>
     <a href="/disciplina/listarDisciplinas" class="waves-effect waves-light btn"><i class="material-icons left">view_headline</i>Lista de Disciplinas </a>
-    <form class="col s10" method="post">
+    <form class="col s10" method="post" th:action="@{/disciplina/cadastrarDisciplina}" >
         <div class="row">
             <div class="input-field col s8">
-                Nome: <input type="text" value="" name="nome"/>
+                Nome: <input type="text" value="" name="nome" />
             </div>
             <div class="input-field col s4">
-                Carga Horária: <input type="number" value="" name="cargaHoraria"/>
+                Carga Horária: <input type="number" value="" name="cargaHoraria" />
 
             </div>
         </div>

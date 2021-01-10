@@ -1,14 +1,17 @@
 package com.example.vvs.VVS.Project.controllers;
 
+import com.example.vvs.VVS.Project.DTO.ProfessorDTO;
 import com.example.vvs.VVS.Project.models.Disciplina;
 import com.example.vvs.VVS.Project.models.Professor;
 import com.example.vvs.VVS.Project.repository.DisciplinaRepository;
 import com.example.vvs.VVS.Project.repository.ProfessorRepository;
+import com.example.vvs.VVS.Project.services.DisciplinaService;
 import com.example.vvs.VVS.Project.services.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +31,9 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
     @Autowired
-    private DisciplinaRepository disciplinaRepository;
+    private DisciplinaService disciplinaService;
+
+    private List<Disciplina> disciplinas;
 
     @InitBinder
     private void dateBinder(WebDataBinder binder) {
@@ -44,28 +49,39 @@ public class ProfessorController {
 
 
     @GetMapping(value = "/cadastrarProfessor")
-    public String form(Professor professor){
+    public String form(Model model){
+
+        ProfessorDTO professorDTO = new ProfessorDTO();
+        //disciplinaService.findAll().forEach(professorDTO :: addDisciplina);
+        model.addAttribute("professor", professorDTO);
         return "professor/formProfessor";
     }
 
     @PostMapping(value = "/cadastrarProfessor")
-    public String save(Professor professor, List<Disciplina> disciplinas){
+    public String save(@ModelAttribute ProfessorDTO professor, Model model){
 
-        professor.setDisciplinas(disciplinas);
-        professorService.save(professor);
+        Professor p = new Professor();
+        p.setCargaHoraria(professor.getCargaHoraria());
+        p.setNome(professor.getNome());
+        p.setDataAdmissao(professor.getDataAdmissao());
+        p.setDisciplinas(professor.getDisciplinas());
+        System.out.println(professor.getDisciplinas());
+        professorService.save(p);
         return "redirect:listarProfessores";
     }
 
     @PostMapping(value = "/cadastrarProfessor{id}")
-    public String form(@PathVariable("id") long id, Professor professor){
+    public ModelAndView form(@PathVariable("id") long id, Professor professor) {
 
-        professorService.save(professor);
-        return "redirect:listarProfessores";
+        System.out.println(professor);
+        //professorService.save(professor);
+        return this.edit(id);
 
     }
 
     @GetMapping(value = "/listarProfessores")
     public ModelAndView listaProfessores(){
+
         ModelAndView modelAndView = new ModelAndView("professor/listarProfessores");
         List<Professor> professores = professorService.findAll();
         modelAndView.addObject("professores", professores);
@@ -77,7 +93,7 @@ public class ProfessorController {
 
         ModelAndView modelAndView = new ModelAndView("professor/editarProfessor");
         Professor professor = professorService.findById(id);
-        modelAndView.addObject("professor", professor);
+        modelAndView.addObject("professorEdit", professor);
 
         return modelAndView;
     }
@@ -92,8 +108,8 @@ public class ProfessorController {
 
     @ModelAttribute("disciplinas")
     public List<Disciplina> listaDisciplinas(){
-        List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-        disciplinaRepository.findAll().forEach(disciplinas::add);
+        List<Disciplina> disciplinas = new ArrayList();
+        disciplinaService.findAll().forEach(disciplinas::add);
         return disciplinas;
     }
 

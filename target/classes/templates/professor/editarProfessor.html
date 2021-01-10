@@ -10,7 +10,7 @@
 <body>
 
 
-<section layout:fragment="main" th:each="professor : ${professor}">
+<section layout:fragment="main" th:each="professor : ${professorEdit}">
         <h1>Editar Cadastro de Professor</h1>
         <form class="col s10" method="post" th:action="@{/professor/cadastrarProfessor{id}(id = ${professor.id})}">
 
@@ -28,8 +28,18 @@
                     Data de Admissão: <input type="date" th:value="${professor.dataAdmissao}" name="dataAdmissao"/>
                 </div>
             </div>
+            <div class="input-field">
+                <p th:each="disciplina : ${professor.disciplinas}">
+                    <label >
+                        <input type="checkbox" th:value="${disciplina.id}" th:name="${disciplina.nome}"  />
+                        <span  th:text="${disciplina.nome}" ></span>
+                    </label>
+                </p>
+            </div>
+
             <button class="waves-effect waves-light btn" type="submit">Salvar</button>
         </form>
+
 
 </section>
 </body>
