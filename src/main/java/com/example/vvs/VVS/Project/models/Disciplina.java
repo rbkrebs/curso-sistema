@@ -24,7 +24,7 @@ public class Disciplina extends AbstractEntity<Long> {
     @NotNull
     private Integer cargaHoraria;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "disciplinas")
     private List<Professor> professores;
 
 }

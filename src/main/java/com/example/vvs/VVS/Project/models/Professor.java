@@ -33,6 +33,10 @@ public class Professor extends AbstractEntity<Long>{
     private LocalDate dataAdmissao;
 
     @ManyToMany
+    @JoinTable(
+            name = "disciplina_professor",
+            joinColumns = @JoinColumn(name = "professor_id"),
+            inverseJoinColumns = @JoinColumn(name = "disciplina_id"))
     private List<Disciplina> disciplinas;
 
 
