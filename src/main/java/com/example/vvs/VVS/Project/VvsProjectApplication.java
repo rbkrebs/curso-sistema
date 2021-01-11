@@ -15,12 +15,12 @@ import javax.servlet.ServletException;
 public class VvsProjectApplication {
 
 	public static void main(String[] args) {
-		/*
-		SpringApplication.run(VvsProjectApplication.class, args);*/
+
+		SpringApplication.run(VvsProjectApplication.class, args);/*
 		new SpringApplicationBuilder()
 				.profiles("dev") // and so does this
 				.sources(VvsProjectApplication.class)
-				.run(args);
+				.run(args);*/
 	}
 
 

@@ -27,7 +27,7 @@
         <div class="input-field" >
             <div th:each="disciplina : ${disciplinas}" >
                 <label >
-                    <input type="hidden" name="_list[0].val" value="">
+
                     <input type="checkbox" th:value="${disciplina.id}"  th:field="*{disciplinas}"/>
                     <span  th:text="${disciplina.nome}" ></span>
                 </label>

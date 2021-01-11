@@ -15,29 +15,59 @@
         <form class="col s10" method="post" th:action="@{/professor/cadastrarProfessor{id}(id = ${professor.id})}">
 
             <div class="row">
-                <div class="input-field col s7">
+                <div class="input-field col s12 m6 l6">
                     Nome: <input type="text" th:value="${professor.nome}" name="nome"/>
                 </div>
-                <div class="input-field col s3">
+                <div class="input-field col s12 m6 l6">
                     Carga Horária: <input type="number" th:value="${professor.cargaHoraria}" name="cargaHoraria"/>
 
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s3">
+                <div class="input-field col s12 m6 l6">
                     Data de Admissão: <input type="date" th:value="${professor.dataAdmissao}" name="dataAdmissao"/>
                 </div>
             </div>
-            <div class="input-field">
-                <p th:each="disciplina : ${professor.disciplinas}">
-                    <label >
-                        <input type="checkbox" th:value="${disciplina.id}" th:name="${disciplina.nome}"  />
-                        <span  th:text="${disciplina.nome}" ></span>
-                    </label>
-                </p>
-            </div>
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <table class="my-container">
+                        <thead>
+                        <tr>
+                            <th>Escolher disciplinas</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="disciplina : ${disciplinas}" >
+                            <td><span th:text="${disciplina.nome}"></span></td>
+                            <th><button type="submit" class="btn-floating btn-small waves-effect waves-light"
+                                        th:name="disciplina" th:value="${disciplina.id}">
+                                <i class="fa fa-plus-circle"></i></button></th>
+                        </tr>
+                        </tbody>
+                    </table>
 
-            <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+                </div>
+                <div class="col s12 m6 l6">
+
+                        <table class="my-container">
+                            <thead>
+                            <tr>
+                                <th>Disciplinas escolhidas</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="disciplina : ${professor.disciplinas}" th:value="${professor.disciplinas}">
+                                <td th:text="${disciplina.nome}" th:field="*{disciplinas}"></td>
+                                <th><a th:id="${'btn_delete_'+disciplina.id}" ><i class="fa fa-trash"></i></a></th>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                </div>
+            </div>
+            <button class="waves-effect waves-light btn right" type="submit">Salvar</button>
         </form>
 
 

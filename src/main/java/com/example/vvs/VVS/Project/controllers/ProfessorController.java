@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -58,24 +59,48 @@ public class ProfessorController {
     }
 
     @PostMapping(value = "/cadastrarProfessor")
-    public String save(@ModelAttribute ProfessorDTO professor, Model model){
+    public String save(@ModelAttribute ProfessorDTO professor){
 
         Professor p = new Professor();
         p.setCargaHoraria(professor.getCargaHoraria());
         p.setNome(professor.getNome());
         p.setDataAdmissao(professor.getDataAdmissao());
         p.setDisciplinas(professor.getDisciplinas());
-        System.out.println(professor.getDisciplinas());
+
         professorService.save(p);
         return "redirect:listarProfessores";
     }
 
     @PostMapping(value = "/cadastrarProfessor{id}")
-    public ModelAndView form(@PathVariable("id") long id, Professor professor) {
+    public ModelAndView form(@PathVariable("id") long id, Professor professor,
+                             @RequestParam(name="disciplina", required = false) Long idDisdiciplina) {
 
+        System.out.println(idDisdiciplina);
         System.out.println(professor);
-        //professorService.save(professor);
-        return this.edit(id);
+
+        if(idDisdiciplina == null){
+
+            Professor p = professorService.findById(id);
+            p.setDisciplinas(professor.getDisciplinas());
+            p.setCargaHoraria(professor.getCargaHoraria());
+            p.setNome(professor.getNome());
+            p.setDataAdmissao(professor.getDataAdmissao());
+            professorService.save(p);
+            return this.edit(id);
+
+        }
+
+            Professor p = professorService.findById(id);
+            //p.getDisciplinas().forEach(professor.getDisciplinas():: add);
+            p.setCargaHoraria(professor.getCargaHoraria());
+            p.setNome(professor.getNome());
+            p.setDataAdmissao(professor.getDataAdmissao());
+            professorService.save(p);
+            return this.edit(id);
+
+
+
+
 
     }
 
